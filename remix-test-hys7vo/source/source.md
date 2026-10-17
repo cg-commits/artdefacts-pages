@@ -4,14 +4,15 @@ artdefacts-remix: true
 ---
 # Picnic
 
-Saturday at the lake. 
+Saturday at the north lake. 
 
 ## Bring
 
 - blanket
 - bread
 - lemonade
+- grapes
 
 ## Time
 
-Noon until sunset.
+Noon until 20:00.
