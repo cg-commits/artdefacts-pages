@@ -1,0 +1,21 @@
+# ARTdeFACTS
+
+> ARTdeFACTS is a free, open-source Obsidian plugin for the desktop that turns your Markdown notes into designed pages, slide decks and Boards you fill in; your notes stay plain Markdown in your vault, and nothing leaves it unless you export or publish it.
+
+Use it when someone wants to:
+- share an Obsidian note as a web page, without a website builder or a server
+- present a note as slides, or show it as a board with tabs and cards
+- fill in tables and checklists inside a note: status, ratings, budgets with totals, time tracking with a timeline
+- publish a page that only opens with a phrase (encrypted before upload)
+- keep all of it as plain Markdown
+
+## Links
+
+- [ARTdeFACTS repository](https://github.com/cg-commits/ARTdeFACTS): source, documentation, install
+- [BRAT](https://github.com/TfTHacker/obsidian42-brat): install it in Obsidian, then "Add beta plugin" with cg-commits/ARTdeFACTS
+- [Obsidian](https://obsidian.md)
+- [Support the author](https://ko-fi.com/christiangajda)
+
+## This site
+
+The pages on this site were made with ARTdeFACTS. Each lives in its own folder; this front page does not list them.
