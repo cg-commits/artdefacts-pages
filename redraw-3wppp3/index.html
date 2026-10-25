@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="ARTdeFACTS">
 <meta name="robots" content="noindex">
-<meta name="artdefacts-version" content="1792948294263">
+<meta name="artdefacts-version" content="1792948387225">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20x%3D%226%22%20y%3D%2214%22%20width%3D%2288%22%20height%3D%2262%22%20rx%3D%2212%22%20fill%3D%22%237c5cff%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2230%22%20width%3D%2240%22%20height%3D%228%22%20rx%3D%224%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2246%22%20width%3D%2260%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%23fff%22%20opacity%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M40%2084h20%22%20stroke%3D%22%237c5cff%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
 <title>Redraw check</title>
 <style>
@@ -1011,10 +1011,46 @@ ${s.items.map(l=>`- ${l.done===null?"":`[${l.done?"x":" "}] `}${l.text}`).join(`
 `)}function Qe(t){let n=[];for(let s=t.parentElement;s;s=s.parentElement)n.push(s);return n}function ye(t){return new Promise((n,s)=>{let l=new Image;l.onload=()=>{let m=document.createElement("canvas");m.width=l.width*2,m.height=l.height*2;let p=m.getContext("2d");p.scale(2,2),p.drawImage(l,0,0),m.toBlob(T=>T?n(T):s(new Error("no picture")),"image/png")},l.onerror=s,l.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(t)})}function tn(t){let n=t.cloneNode(!0),s=[t,...t.querySelectorAll("*")],l=[n,...n.querySelectorAll("*")];s.forEach((p,T)=>{let D=getComputedStyle(p),H=l[T];for(let q of["fill","stroke","stroke-width","opacity","font-family","font-size","font-weight"]){let G=D.getPropertyValue(q);(G&&G!=="none"||q==="fill"||q==="stroke")&&H.style.setProperty(q,G)}for(let q of["fill","stroke"])/var\(/.test(H.getAttribute(q)??"")&&H.setAttribute(q,D.getPropertyValue(q));H.removeAttribute("class")});let m=t.getBoundingClientRect();return n.setAttribute("xmlns","http://www.w3.org/2000/svg"),n.setAttribute("width",String(Math.round(m.width)||320)),n.setAttribute("height",String(Math.round(m.height)||180)),n.style.setProperty("color",getComputedStyle(t).color),new XMLSerializer().serializeToString(n)}function en(t){return new Promise((n,s)=>{let l=document.createElement("canvas");l.width=t.naturalWidth||t.width,l.height=t.naturalHeight||t.height;let m=l.getContext("2d");if(!m)return s(new Error("no canvas"));try{m.drawImage(t,0,0)}catch(p){return s(p)}l.toBlob(p=>p?n(p):s(new Error("no picture")),"image/png")})}function nn(t,n){let s=document.createElement("a");s.href=URL.createObjectURL(n),s.download=t,document.body.appendChild(s),s.click(),s.remove(),window.setTimeout(()=>URL.revokeObjectURL(s.href),1e3)}function Vt(t,n,s){let l=document.createElement("a");l.href=URL.createObjectURL(new Blob([s],{type:`${n};charset=utf-8`})),l.download=t,document.body.appendChild(l),l.click(),l.remove(),window.setTimeout(()=>URL.revokeObjectURL(l.href),1e3)}var xe=document.getElementById("ss-board-model");xe&&_e(JSON.parse(xe.textContent||"{}"));})();
 </script>
 
-
+<dialog class="ss-cm" aria-label="Comment"><form method="dialog">
+<p class="ss-cm-where"></p>
+<textarea rows="5" maxlength="3000" aria-label="Your comment" placeholder="Your comment"></textarea>
+<div class="ss-cm-row"><button type="button" data-via="mail">Send by email</button><button type="button" data-via="issue">Post on GitHub</button><button value="cancel">Cancel</button></div>
+<p class="ss-cm-hint">Email: only the owner sees it. GitHub: public, and you need an account there. Nothing is sent from this page; your mail app or the site opens with the text filled in.</p>
+</form></dialog>
+<script>(() => {
+const dlg = document.querySelector(".ss-cm"), box = dlg.querySelector("textarea"), where = dlg.querySelector(".ss-cm-where");
+const mail = "Y2hyLmdhamRhK3Rlc3RAZ21haWwuY29t", issues = "https://github.com/cg-commits/artdefacts-pages/issues/new";
+const page = location.href.split("#")[0].replace(/index\.html$/, "");
+let section = "";
+if (true)
+  document.querySelectorAll("main h1, main h2, main h3, main h4").forEach((h) => {
+    const b = document.createElement("button"), s = h.textContent.trim();
+    b.type = "button"; b.className = "ss-cm-open ss-cm-h"; b.dataset.section = s; b.setAttribute("aria-label", "Comment on \u201C" + s + "\u201D");
+    h.appendChild(b);
+  });
+document.addEventListener("click", (e) => {
+  const o = e.target.closest(".ss-cm-open");
+  if (!o) return;
+  section = o.dataset.section || "";
+  where.textContent = section ? "On \u201C" + section + "\u201D" : "On this page";
+  box.value = ""; dlg.showModal(); box.focus();
+});
+dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+dlg.querySelectorAll("[data-via]").forEach((b) => b.addEventListener("click", () => {
+  const text = box.value.trim();
+  if (!text) { box.focus(); return; }
+  const at = page + (section ? "  \u2192  " + section : "");
+  // the issue carries a hidden line saying where it was written, so the owner's Obsidian can sort it
+  const tag = "<!-- artdefacts " + JSON.stringify({ page, section }).replace(/>/g, "\\u003e") + " -->";
+  const title = encodeURIComponent((document.title + (section ? ": " + section : "")).slice(0, 120));
+  if (b.dataset.via === "mail") location.href = "mailto:" + atob(mail) + "?subject=" + title + "&body=" + encodeURIComponent(text + "\n\n" + at);
+  else window.open(issues + "?title=" + title + "&body=" + encodeURIComponent(text + "\n\n" + at + "\n\n" + tag), "_blank", "noopener");
+  dlg.close();
+}));
+})();</script>
 <details class="ss-gear"><summary aria-label="Menu" title="Menu"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="ss-gear-panel">
 
-<nav class="ss-overview ss-board-chapters" aria-label="Chapters"></nav>
+<nav class="ss-overview ss-board-chapters" aria-label="Chapters"></nav><button type="button" class="ss-cm-open ss-cm-menu">Comment on this page (beta)</button>
 <p class="ss-gear-saved" hidden>Changes here are saved in the note.</p>
 </div></details>
 <script>
